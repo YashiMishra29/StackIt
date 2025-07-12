@@ -1,25 +1,21 @@
-{% extends "base.html" %}
-
-{% block title %}Ask Question - StackIt{% endblock %}
-
+{% extends 'base.html' %}
 {% block content %}
-<section id="ask-content" class="content-section">
-    <h2>Ask a Question</h2>
-    <form id="ask-question-form">
-        <div class="form-group">
-            <label for="question-title">Title</label>
-            <input type="text" id="question-title" placeholder="What's your question? Be specific." required>
-        </div>
-        <div class="form-group">
-            <label for="question-body">Body</label>
-            <div id="editor-container"></div>
-            <textarea id="question-body" hidden required></textarea>
-        </div>
-        <div class="form-group">
-            <label for="question-tags">Tags</label>
-            <input type="text" id="question-tags" placeholder="Add tags (comma separated)">
-        </div>
-        <button type="submit" class="btn btn-primary">Post Question</button>
-    </form>
-</section>
+<h2>Ask a Question</h2>
+<form method="POST">
+  {{ form.hidden_tag() }}
+  <div class="mb-3">
+    {{ form.title.label(class="form-label") }}
+    {{ form.title(class="form-control") }}
+  </div>
+  <div class="mb-3">
+    {{ form.description.label(class="form-label") }}
+    {{ form.description(class="form-control", rows=6) }}
+  </div>
+  <div class="mb-3">
+    {{ form.tags.label(class="form-label") }}
+    {{ form.tags(class="form-control") }}
+    <div class="form-text">Use comma to separate tags (e.g., SQL, Flask, Python)</div>
+  </div>
+  {{ form.submit(class="btn btn-primary") }}
+</form>
 {% endblock %}

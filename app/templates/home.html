@@ -1,264 +1,30 @@
-{% extends "base.html" %}
-
-{% block title %}Home - StackIt{% endblock %}
-
+{% extends 'base.html' %}
 {% block content %}
-    <section id="home-page" class="page active">
-            <div class="page-header">
-                <h2>All Questions</h2>
-                <button class="btn btn-primary" id="ask-question-btn">Ask Question</button>
-            </div>
+<div class="d-flex justify-content-between align-items-center mb-3">
+  <h2>All Questions</h2>
+  <div>
+    <select class="form-select d-inline-block w-auto me-2">
+      <option selected>Newest</option>
+      <option>Unanswered</option>
+    </select>
+    <input type="text" class="form-control d-inline-block w-auto" placeholder="Search...">
+  </div>
+</div>
 
-            <div class="filters">
-                <div class="filter-tabs">
-                    <a href="#" class="active">Newest</a>
-                    <a href="#">Unanswered</a>
-                    <a href="#">Most Votes</a>
-                </div>
-                <div class="filter-search">
-                    <input type="text" placeholder="Filter questions...">
-                </div>
-            </div>
-
-            <div class="questions-list">
-                <!-- Question 1 -->
-                <div class="question-card">
-                    <div class="question-stats">
-                        <div class="votes">
-                            <span class="count">5</span>
-                            <span>votes</span>
-                        </div>
-                        <div class="answers">
-                            <span class="count">2</span>
-                            <span>answers</span>
-                        </div>
-                        <div class="views">
-                            <span class="count">124</span>
-                            <span>views</span>
-                        </div>
-                    </div>
-                    <div class="question-content">
-                        <h3 class="question-title">How to join 2 columns in a data set to make a separate column in SQL</h3>
-                        <p class="question-excerpt">I do not know the code for it as I am a beginner. As an example what I need to do is like there is a column 1 containing First name, and column 2 consists of last name I want a column to combine...</p>
-                        <div class="question-meta">
-                            <div class="tags">
-                                <span class="tag">sql</span>
-                                <span class="tag">database</span>
-                                <span class="tag">join</span>
-                            </div>
-                            <div class="user-info">
-                                <span class="username">Soulful Emu</span>
-                                <span class="time">asked 2 days ago</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Question 2 -->
-                <div class="question-card">
-                    <div class="question-stats">
-                        <div class="votes">
-                            <span class="count">12</span>
-                            <span>votes</span>
-                        </div>
-                        <div class="answers">
-                            <span class="count">4</span>
-                            <span>answers</span>
-                        </div>
-                        <div class="views">
-                            <span class="count">356</span>
-                            <span>views</span>
-                        </div>
-                    </div>
-                    <div class="question-content">
-                        <h3 class="question-title">How to center a div vertically and horizontally in CSS</h3>
-                        <p class="question-excerpt">I've tried several methods but none seem to work properly in all browsers. What's the most reliable way to center a div both vertically and horizontally?</p>
-                        <div class="question-meta">
-                            <div class="tags">
-                                <span class="tag">css</span>
-                                <span class="tag">html</span>
-                                <span class="tag">frontend</span>
-                            </div>
-                            <div class="user-info">
-                                <span class="username">Curious Cat</span>
-                                <span class="time">asked 1 week ago</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Pagination -->
-                <div class="pagination">
-                    <a href="#" class="page-link active">1</a>
-                    <a href="#" class="page-link">2</a>
-                    <a href="#" class="page-link">3</a>
-                    <a href="#" class="page-link">4</a>
-                    <a href="#" class="page-link">5</a>
-                    <a href="#" class="page-link">Next</a>
-                </div>
-            </div>
-        </section>
-
-        <!-- Ask Question Page -->
-        <section id="ask-page" class="page">
-            <div class="page-header">
-                <h2>Ask a Question</h2>
-                <button class="btn btn-outline" id="back-to-home">Back to Home</button>
-            </div>
-
-            <form id="ask-question-form">
-                <div class="form-group">
-                    <label for="question-title">Title</label>
-                    <p class="form-hint">Be specific and imagine you're asking a question to another person</p>
-                    <input type="text" id="question-title" placeholder="e.g. How to join two columns in SQL?">
-                </div>
-
-                <div class="form-group">
-                    <label for="question-body">Body</label>
-                    <p class="form-hint">Include all the information someone would need to answer your question</p>
-                    <div id="editor-container"></div>
-                    <textarea id="question-body" hidden></textarea>
-                </div>
-
-                <div class="form-group">
-                    <label for="question-tags">Tags</label>
-                    <p class="form-hint">Add up to 5 tags to describe what your question is about</p>
-                    <input type="text" id="question-tags" placeholder="e.g. sql, database, join">
-                </div>
-
-                <button type="submit" class="btn btn-primary">Post Your Question</button>
-            </form>
-        </section>
-
-        <!-- Question Detail Page -->
-        <section id="question-page" class="page">
-            <div class="page-header">
-                <h2>Question</h2>
-                <button class="btn btn-primary" id="ask-another-btn">Ask Question</button>
-            </div>
-
-            <div class="question-detail">
-                <div class="question-header">
-                    <h1>How to join 2 columns in a data set to make a separate column in SQL</h1>
-                    <div class="question-meta">
-                        <div class="question-actions">
-                            <button class="btn btn-outline"><i class="far fa-clock"></i> Watch</button>
-                            <button class="btn btn-outline"><i class="far fa-edit"></i> Edit</button>
-                            <button class="btn btn-outline"><i class="far fa-flag"></i> Flag</button>
-                        </div>
-                        <div class="question-stats">
-                            <span class="asked">Asked <strong>2 days ago</strong></span>
-                            <span class="viewed">Viewed <strong>124 times</strong></span>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="question-content">
-                    <div class="vote-cell">
-                        <button class="vote-btn up"><i class="fas fa-chevron-up"></i></button>
-                        <span class="vote-count">5</span>
-                        <button class="vote-btn down"><i class="fas fa-chevron-down"></i></button>
-                        <button class="bookmark-btn"><i class="far fa-bookmark"></i></button>
-                    </div>
-                    <div class="content-cell">
-                        <div class="post-text">
-                            <p>I do not know the code for it as I am a beginner. As an example what I need to do is like there is a column 1 containing First name, and column 2 consists of last name I want a column to combine them into a full name column.</p>
-                            <p>I've tried searching online but most examples are too complex for my level. Can someone explain the simplest way to do this?</p>
-                        </div>
-                        <div class="post-tags">
-                            <a href="#" class="tag">sql</a>
-                            <a href="#" class="tag">database</a>
-                            <a href="#" class="tag">join</a>
-                        </div>
-                        <div class="post-user">
-                            <div class="user-info">
-                                <span class="asked-by">asked 2 days ago</span>
-                                <div class="user-details">
-                                    <div class="user-avatar"></div>
-                                    <div class="user-name">
-                                        <a href="#">Soulful Emu</a>
-                                        <span class="reputation">125</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="answers-section">
-                <h2 class="answers-header">2 Answers</h2>
-
-                <!-- Answer 1 -->
-                <div class="answer accepted">
-                    <div class="vote-cell">
-                        <button class="vote-btn up"><i class="fas fa-chevron-up"></i></button>
-                        <span class="vote-count">3</span>
-                        <button class="vote-btn down"><i class="fas fa-chevron-down"></i></button>
-                        <div class="accepted-label">
-                            <i class="fas fa-check"></i> Accepted
-                        </div>
-                    </div>
-                    <div class="content-cell">
-                        <div class="post-text">
-                            <p>In SQL, you can use the <code>CONCAT</code> function to combine two columns:</p>
-                            <pre><code>SELECT CONCAT(first_name, ' ', last_name) AS full_name FROM users;</code></pre>
-                            <p>This will create a new column called <code>full_name</code> that combines the <code>first_name</code> and <code>last_name</code> columns with a space in between.</p>
-                        </div>
-                        <div class="post-user">
-                            <div class="user-info">
-                                <span class="answered-by">answered yesterday</span>
-                                <div class="user-details">
-                                    <div class="user-avatar"></div>
-                                    <div class="user-name">
-                                        <a href="#">SQL Expert</a>
-                                        <span class="reputation">1,245</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Answer 2 -->
-                <div class="answer">
-                    <div class="vote-cell">
-                        <button class="vote-btn up"><i class="fas fa-chevron-up"></i></button>
-                        <span class="vote-count">1</span>
-                        <button class="vote-btn down"><i class="fas fa-chevron-down"></i></button>
-                    </div>
-                    <div class="content-cell">
-                        <div class="post-text">
-                            <p>Depending on your database system, you might also use the concatenation operator:</p>
-                            <ul>
-                                <li>In MySQL: <code>SELECT first_name || ' ' || last_name AS full_name FROM users;</code></li>
-                                <li>In SQL Server: <code>SELECT first_name + ' ' + last_name AS full_name FROM users;</code></li>
-                            </ul>
-                            <p>But the <code>CONCAT</code> function is more universally supported.</p>
-                        </div>
-                        <div class="post-user">
-                            <div class="user-info">
-                                <span class="answered-by">answered 5 hours ago</span>
-                                <div class="user-details">
-                                    <div class="user-avatar"></div>
-                                    <div class="user-name">
-                                        <a href="#">Database Guru</a>
-                                        <span class="reputation">876</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="your-answer">
-                <h2>Your Answer</h2>
-                <form id="post-answer-form">
-                    <div id="answer-editor-container"></div>
-                    <textarea id="answer-body" hidden></textarea>
-                    <button type="submit" class="btn btn-primary">Post Your Answer</button>
-                </form>
-            </div>
-        </section>
+{% for q in questions %}
+<div class="card mb-3">
+  <div class="card-body">
+    <h5><a href="{{ url_for('main.question_detail', question_id=q.id) }}">{{ q.title }}</a></h5>
+    <p>{{ q.description[:200] }}...</p>
+    <div class="small text-muted">
+      Posted by {{ q.author.username }} | {{ q.date_posted.strftime('%Y-%m-%d') }}
+      <br>
+      Tags:
+      {% for tag in q.tags %}
+        <span class="badge bg-secondary">{{ tag.name }}</span>
+      {% endfor %}
+    </div>
+  </div>
+</div>
+{% endfor %}
 {% endblock %}
