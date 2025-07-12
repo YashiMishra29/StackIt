@@ -1,0 +1,92 @@
+/* style.css - Light Modern Theme */
+
+body {
+  font-family: 'Segoe UI', 'Roboto', sans-serif;
+  background-color: #f9f9fb;
+  color: #333;
+  line-height: 1.6;
+}
+
+a {
+  text-decoration: none;
+  color: #2255aa;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+.navbar {
+  background-color: #fff;
+  border-bottom: 1px solid #ddd;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.02);
+}
+
+.card {
+  border-radius: 10px;
+  border: 1px solid #e0e0e0;
+  box-shadow: 0 1px 6px rgba(0, 0, 0, 0.04);
+  transition: transform 0.2s;
+}
+
+.card:hover {
+  transform: scale(1.005);
+}
+
+.card-body p {
+  margin-bottom: 0.5rem;
+}
+
+.badge {
+  background-color: #e7f1ff;
+  color: #155fc1;
+  margin-right: 5px;
+  padding: 5px 8px;
+  border-radius: 5px;
+  font-size: 0.8rem;
+}
+
+.btn {
+  border-radius: 6px;
+  padding: 6px 14px;
+  font-size: 0.95rem;
+}
+
+.btn-primary {
+  background-color: #2255aa;
+  border-color: #2255aa;
+}
+
+.btn-primary:hover {
+  background-color: #1a4480;
+}
+
+.form-control, .form-select {
+  border-radius: 6px;
+  border-color: #ccc;
+}
+
+.breadcrumb {
+  background: none;
+  padding: 0;
+  margin-bottom: 1rem;
+}
+
+.alert {
+  border-radius: 6px;
+}
+
+.small.text-muted {
+  font-size: 0.85rem;
+  color: #777;
+}
+
+.question-card-title {
+  font-weight: 500;
+  font-size: 1.2rem;
+}
+
+.question-card-snippet {
+  font-size: 0.95rem;
+  color: #555;
+}

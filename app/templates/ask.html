@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2>Ask a Question</h2>
+<form method="POST">
+  {{ form.hidden_tag() }}
+  <div class="mb-3">
+    {{ form.title.label(class="form-label") }}
+    {{ form.title(class="form-control") }}
+  </div>
+  <div class="mb-3">
+    {{ form.description.label(class="form-label") }}
+    {{ form.description(class="form-control", rows=6) }}
+  </div>
+  <div class="mb-3">
+    {{ form.tags.label(class="form-label") }}
+    {{ form.tags(class="form-control") }}
+    <div class="form-text">Use comma to separate tags (e.g., SQL, Flask, Python)</div>
+  </div>
+  {{ form.submit(class="btn btn-primary") }}
+</form>
+{% endblock %}

@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="d-flex justify-content-between align-items-center mb-3">
+  <h2>All Questions</h2>
+  <div>
+    <select class="form-select d-inline-block w-auto me-2">
+      <option selected>Newest</option>
+      <option>Unanswered</option>
+    </select>
+    <input type="text" class="form-control d-inline-block w-auto" placeholder="Search...">
+  </div>
+</div>
+
+{% for q in questions %}
+<div class="card mb-3">
+  <div class="card-body">
+    <h5><a href="{{ url_for('main.question_detail', question_id=q.id) }}">{{ q.title }}</a></h5>
+    <p>{{ q.description[:200] }}...</p>
+    <div class="small text-muted">
+      Posted by {{ q.author.username }} | {{ q.date_posted.strftime('%Y-%m-%d') }}
+      <br>
+      Tags:
+      {% for tag in q.tags %}
+        <span class="badge bg-secondary">{{ tag.name }}</span>
+      {% endfor %}
+    </div>
+  </div>
+</div>
+{% endfor %}
+{% endblock %}

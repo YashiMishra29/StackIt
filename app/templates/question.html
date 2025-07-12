@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+{% block content %}
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><a href="{{ url_for('main.home') }}">Home</a></li>
+    <li class="breadcrumb-item active" aria-current="page">{{ question.title }}</li>
+  </ol>
+</nav>
+
+<h3>{{ question.title }}</h3>
+<p>{{ question.description }}</p>
+<p class="text-muted">Posted by {{ question.author.username }} on {{ question.date_posted.strftime('%Y-%m-%d') }}</p>
+
+<h5>Answers:</h5>
+{% for ans in question.answers %}
+<div class="card mb-3">
+  <div class="card-body">
+    <p>{{ ans.content }}</p>
+    <div class="d-flex justify-content-between">
+      <small class="text-muted">By {{ ans.author.username }} on {{ ans.date_posted.strftime('%Y-%m-%d') }}</small>
+      <div>
+        👍 {{ ans.votes|length }}
+        {% if current_user.is_authenticated %}
+        <form method="post" action="{{ url_for('main.vote_answer', answer_id=ans.id) }}" class="d-inline">
+          <button class="btn btn-sm btn-outline-success">Vote</button>
+        </form>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</div>
+{% else %}
+<p>No answers yet. Be the first to answer!</p>
+{% endfor %}
+
+{% if current_user.is_authenticated %}
+<h5 class="mt-4">Your Answer:</h5>
+<form method="POST">
+  {{ form.hidden_tag() }}
+  <div class="mb-3">
+    {{ form.content(class="form-control", rows=5) }}
+  </div>
+  {{ form.submit(class="btn btn-success") }}
+</form>
+{% else %}
+<p><a href="{{ url_for('main.login') }}">Login</a> to answer or vote.</p>
+{% endif %}
+{% endblock %}
