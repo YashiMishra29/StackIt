@@ -1,37 +1,39 @@
-<!-- app/templates/base.html -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>StackIt</title>
-  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>StackIt - {% block title %}{% endblock %}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
-  <nav class="navbar navbar-expand-lg navbar-light bg-light px-3">
-    <a class="navbar-brand" href="{{ url_for('main.home') }}">StackIt</a>
-    <div class="ms-auto d-flex align-items-center">
-      {% if current_user.is_authenticated %}
-        <a class="btn btn-outline-secondary me-2" href="{{ url_for('main.ask') }}">Ask New Question</a>
-        <span class="me-3">👤 {{ current_user.username }}</span>
-        <a class="btn btn-danger" href="{{ url_for('main.logout') }}">Logout</a>
-      {% else %}
-        <a class="btn btn-outline-primary" href="{{ url_for('main.login') }}">Login</a>
-      {% endif %}
-    </div>
-  </nav>
+   <header class="header">
+        <div class="container">
+            <h1 class="logo">StackIt</h1>
+            <nav class="main-nav">
+                <a href="#" class="active">Home</a>
+                <a href="#">Questions</a>
+                <a href="#">Tags</a>
+                <a href="#">Users</a>
+            </nav>
+            <div class="search-box">
+                <input type="text" placeholder="Search...">
+                <i class="fas fa-search"></i>
+            </div>
+            <div class="auth-buttons">
+                <a class="btn btn-outline" href="{{ url_for('main.login') }}">Log in</a>
 
-  <div class="container mt-4">
-    {% with messages = get_flashed_messages(with_categories=true) %}
-      {% if messages %}
-        {% for category, message in messages %}
-          <div class="alert alert-{{ category }}">{{ message }}</div>
-        {% endfor %}
-      {% endif %}
-    {% endwith %}
+                <a class="btn btn-primary" href="{{ url_for('main.register') }}">Register</a>
+            </div>
+        </div>
+    </header>
 
-    {% block content %}{% endblock %}
-  </div>
+
+    <main class="container">
+        {% block content %}{% endblock %}
+    </main>
+
+    <script src="{{ url_for('static', filename='js/index.js') }}"></script>
 </body>
 </html>

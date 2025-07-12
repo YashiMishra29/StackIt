@@ -1,48 +1,120 @@
-{% extends 'base.html' %}
+{% extends "base.html" %}
+
+{% block title %}Question - StackIt{% endblock %}
+
 {% block content %}
-<nav aria-label="breadcrumb">
-  <ol class="breadcrumb">
-    <li class="breadcrumb-item"><a href="{{ url_for('main.home') }}">Home</a></li>
-    <li class="breadcrumb-item active" aria-current="page">{{ question.title }}</li>
-  </ol>
-</nav>
-
-<h3>{{ question.title }}</h3>
-<p>{{ question.description }}</p>
-<p class="text-muted">Posted by {{ question.author.username }} on {{ question.date_posted.strftime('%Y-%m-%d') }}</p>
-
-<h5>Answers:</h5>
-{% for ans in question.answers %}
-<div class="card mb-3">
-  <div class="card-body">
-    <p>{{ ans.content }}</p>
-    <div class="d-flex justify-content-between">
-      <small class="text-muted">By {{ ans.author.username }} on {{ ans.date_posted.strftime('%Y-%m-%d') }}</small>
-      <div>
-        👍 {{ ans.votes|length }}
-        {% if current_user.is_authenticated %}
-        <form method="post" action="{{ url_for('main.vote_answer', answer_id=ans.id) }}" class="d-inline">
-          <button class="btn btn-sm btn-outline-success">Vote</button>
-        </form>
-        {% endif %}
-      </div>
+<section id="question-detail-content" class="content-section">
+    <div class="question-detail">
+        <div class="question-header">
+            <h2>How to join 2 columns in SQL to create a new column?</h2>
+            <div class="question-meta">
+                <div class="stats">
+                    <span class="asked">Asked 2 hours ago</span>
+                    <span class="modified">Modified 1 hour ago</span>
+                    <span class="views">Viewed 42 times</span>
+                </div>
+                <div class="actions">
+                    <button class="btn btn-outline share-btn">Share</button>
+                    <button class="btn btn-outline follow-btn">Follow</button>
+                </div>
+            </div>
+        </div>
+        <div class="question-content">
+            <div class="vote-cell">
+                <button class="vote-btn upvote"><i class="fas fa-chevron-up"></i></button>
+                <span class="vote-count">5</span>
+                <button class="vote-btn downvote"><i class="fas fa-chevron-down"></i></button>
+                <button class="bookmark-btn"><i class="far fa-bookmark"></i></button>
+            </div>
+            <div class="post-cell">
+                <div class="post-content">
+                    <p>I'm working with a SQL database that has separate columns for first_name and last_name. I need to combine these into a single full_name column in my query results.</p>
+                    <p>I've tried using the + operator but it doesn't seem to work. What's the proper way to concatenate columns in SQL?</p>
+                </div>
+                <div class="post-footer">
+                    <div class="tags">
+                        <span class="tag">sql</span>
+                        <span class="tag">database</span>
+                    </div>
+                    <div class="user-info">
+                        <div class="user-details">
+                            <span class="asked-by">asked by</span>
+                            <span class="username">new_user</span>
+                            <span class="reputation">1</span>
+                        </div>
+                        <div class="user-avatar"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
-  </div>
-</div>
-{% else %}
-<p>No answers yet. Be the first to answer!</p>
-{% endfor %}
 
-{% if current_user.is_authenticated %}
-<h5 class="mt-4">Your Answer:</h5>
-<form method="POST">
-  {{ form.hidden_tag() }}
-  <div class="mb-3">
-    {{ form.content(class="form-control", rows=5) }}
-  </div>
-  {{ form.submit(class="btn btn-success") }}
-</form>
-{% else %}
-<p><a href="{{ url_for('main.login') }}">Login</a> to answer or vote.</p>
-{% endif %}
+    <div class="answers-section">
+        <h3 id="answers-count">2 Answers</h3>
+        <div id="answers-list">
+            <div class="answer">
+                <div class="vote-cell">
+                    <button class="vote-btn upvote"><i class="fas fa-chevron-up"></i></button>
+                    <span class="vote-count">3</span>
+                    <button class="vote-btn downvote"><i class="fas fa-chevron-down"></i></button>
+                    <div class="accepted-mark"><i class="fas fa-check"></i></div>
+                </div>
+                <div class="post-cell">
+                    <div class="post-content">
+                        <p>In SQL, you can use the CONCAT function to combine columns:</p>
+                        <pre><code>SELECT CONCAT(first_name, ' ', last_name) AS full_name FROM users;</code></pre>
+                        <p>This will create a new column called full_name with the combined values.</p>
+                    </div>
+                    <div class="post-footer">
+                        <div class="user-info">
+                            <div class="user-details">
+                                <span class="answered-by">answered by</span>
+                                <span class="username">sql_expert</span>
+                                <span class="reputation">1,234</span>
+                            </div>
+                            <div class="user-avatar"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="answer">
+                <div class="vote-cell">
+                    <button class="vote-btn upvote"><i class="fas fa-chevron-up"></i></button>
+                    <span class="vote-count">1</span>
+                    <button class="vote-btn downvote"><i class="fas fa-chevron-down"></i></button>
+                </div>
+                <div class="post-cell">
+                    <div class="post-content">
+                        <p>Depending on your database system, you might also use:</p>
+                        <ul>
+                            <li>MySQL: CONCAT() or CONCAT_WS()</li>
+                            <li>SQL Server: + operator or CONCAT()</li>
+                            <li>PostgreSQL: || operator or CONCAT()</li>
+                        </ul>
+                    </div>
+                    <div class="post-footer">
+                        <div class="user-info">
+                            <div class="user-details">
+                                <span class="answered-by">answered by</span>
+                                <span class="username">db_admin</span>
+                                <span class="reputation">567</span>
+                            </div>
+                            <div class="user-avatar"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="post-answer">
+            <h3>Your Answer</h3>
+            <form id="post-answer-form">
+                <div id="answer-editor-container"></div>
+                <textarea id="answer-body" hidden required></textarea>
+                <button type="submit" class="btn btn-primary">Post Answer</button>
+            </form>
+        </div>
+    </div>
+</section>
 {% endblock %}
