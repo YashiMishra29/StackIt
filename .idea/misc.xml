@@ -3,5 +3,5 @@
   <component name="Black">
     <option name="sdkName" value="Python 3.9 (StackIt_odoo)" />
   </component>
-  <component name="ProjectRootManager" version="2" project-jdk-name="Python 3.9 (StackIt_odoo)" project-jdk-type="Python SDK" />
+  <component name="ProjectRootManager" version="2" project-jdk-name="Python 3.10 (StackIt)" project-jdk-type="Python SDK" />
 </project>
